@@ -6,7 +6,7 @@
 export default {
   data: function() {
     return {
-      ola: "Hello World"
+      ola: "Hello World!"
     };
   }
 };
