@@ -1,12 +1,20 @@
 <template>
-  <div id="app">{{ola}}</div>
+  <div id="app">
+    <navigation></navigation>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
+import Navigation from "./components/Navigation";
+
 export default {
+  components: {
+    Navigation
+  },
   data: function() {
     return {
-      ola: "Hello World!"
+      ola: "OLa World!"
     };
   }
 };
