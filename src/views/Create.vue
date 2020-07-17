@@ -20,7 +20,10 @@
         placeholder="Enter your description"
       />
     </div>
-    <div v-if="error.description">{{error.description}}</div>
+    <div
+      class="bg-red-600 py-1 px-2 mb-2 txt-2 text-white text-xs rounded"
+      v-if="error.description"
+    >{{error.description}}</div>
 
     <div class="input-field">
       <label for="amount">Amount</label>
@@ -35,10 +38,16 @@
         />
       </div>
     </div>
-    <div v-if="error.amount">{{error.amount}}</div>
+    <div
+      class="bg-red-600 py-1 px-2 mb-2 txt-2 text-white text-xs rounded"
+      v-if="error.amount"
+    >{{error.amount}}</div>
 
     <div class="mt-4">
-      <button class="border-2 border-purple-600 px-16 py-2" @click.prevent="addTransaction">Add</button>
+      <button
+        class="border-2 border-purple-600 px-16 py-2 rounded"
+        @click.prevent="addTransaction"
+      >Add</button>
     </div>
   </div>
 </template>
@@ -76,11 +85,11 @@ export default {
       var errorsNum = 0;
 
       if (!this.input.description) {
-        this.error.description = "Please enter a transaction description";
+        this.error.description = "Please enter a description";
         errorsNum++;
       }
       if (!this.input.amount) {
-        this.error.amount = "Please enter a transaction  amount";
+        this.error.amount = "Please enter an  amount";
         errorsNum++;
       }
 
