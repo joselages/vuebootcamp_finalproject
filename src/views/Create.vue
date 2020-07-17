@@ -20,10 +20,12 @@
         placeholder="Enter your description"
       />
     </div>
-    <div
-      class="bg-red-600 py-1 px-2 mb-2 txt-2 text-white text-xs rounded"
-      v-if="error.description"
-    >{{error.description}}</div>
+    <transition name="fadein">
+      <div
+        v-if="error.description"
+        class="bg-red-600 py-1 px-2 mb-2 txt-2 text-white text-xs rounded"
+      >{{error.description}}</div>
+    </transition>
 
     <div class="input-field">
       <label for="amount">Amount</label>
@@ -38,10 +40,12 @@
         />
       </div>
     </div>
-    <div
-      class="bg-red-600 py-1 px-2 mb-2 txt-2 text-white text-xs rounded"
-      v-if="error.amount"
-    >{{error.amount}}</div>
+    <transition name="fadein">
+      <div
+        class="bg-red-600 py-1 px-2 mb-2 txt-2 text-white text-xs rounded"
+        v-if="error.amount"
+      >{{error.amount}}</div>
+    </transition>
 
     <div class="mt-4">
       <button
@@ -99,4 +103,15 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.fadein-enter,
+.fadein-leave-to {
+  opacity: 0;
+  transform: translate3d(-10px, 0, 0);
+}
+
+.fadein-enter-active,
+.fadein-leave-active {
+  transition: all 0.5s ease;
+}
+</style>
