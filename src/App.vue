@@ -21,6 +21,7 @@ export default {
 </script>   
 
 <style>
+/*styles provided from scrimba*/
 body {
   font-family: "Poppins", sans-serif;
   color: #444;
