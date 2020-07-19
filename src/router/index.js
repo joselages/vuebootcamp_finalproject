@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import Transactions from "../views/Transactions";
+import Transactions from "../views/Index";
 import Create from "../views/Create";
 
 Vue.use(VueRouter);
