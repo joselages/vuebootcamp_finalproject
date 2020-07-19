@@ -5,21 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    fields: [
-      {
-        type: "debit",
-        description: "Jantar",
-        amount: 1500,
-      },
-      {
-        type: "credit",
-        description: "Almoço",
-        amount: 1000,
-      },
-    ],
+    fields: [],
   },
   getters: {
     getTransactions: function(state) {
+      console.log(state.fields.length);
       return state.fields;
     },
   },

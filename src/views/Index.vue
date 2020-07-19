@@ -2,13 +2,19 @@
   <div class="flex flex-col items-center">
     <h1>My Transactions</h1>
 
-    <div v-for="transaction in getTransactions" :key="transaction.id" class="transaction">
-      <div class="flex">
-        <div class="w-24">{{transaction.type.toUpperCase()}}</div>
-        <div :title="transaction.description" class="w-40 truncated_txt">{{transaction.description}}</div>
+    <template v-if="getTransactions.length > 0">
+      <div v-for="transaction in getTransactions" :key="transaction.id" class="transaction">
+        <div class="flex">
+          <div class="w-24">{{transaction.type.toUpperCase()}}</div>
+          <div
+            :title="transaction.description"
+            class="w-40 truncated_txt"
+          >{{transaction.description}}</div>
+        </div>
+        <div>{{ formatMoney(transaction.amount) }}</div>
       </div>
-      <div>{{ formatMoney(transaction.amount) }}</div>
-    </div>
+    </template>
+    <template v-else>Não tem transações</template>
   </div>
 </template>
 
