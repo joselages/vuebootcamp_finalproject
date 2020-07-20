@@ -5,12 +5,39 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    fields: [],
+    fields: [
+      {
+        type: "debit",
+        description: "jantar",
+        amount: 1000,
+      },
+      {
+        type: "credit",
+        description: "olo",
+        amount: 2000,
+      },
+    ],
   },
   getters: {
     getTransactions: function(state) {
-      console.log(state.fields.length);
       return state.fields;
+    },
+
+    getBalance: function(state) {
+      var total = 0;
+
+      if (state.fields.length < 1) {
+        return total;
+      } else {
+        state.fields.forEach(function(value) {
+          if (value.type === "credit") {
+            total += value.amount;
+          } else {
+            total -= value.amount;
+          }
+        });
+        return total;
+      }
     },
   },
   mutations: {
@@ -18,7 +45,6 @@ export default new Vuex.Store({
     getFields: function(state, payload) {
       //so it does not clone the first
       state.fields.push(JSON.parse(JSON.stringify(payload)));
-      console.log(state.fields);
     },
   },
   actions: {

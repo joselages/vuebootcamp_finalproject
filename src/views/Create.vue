@@ -81,7 +81,7 @@ export default {
         this.input.amount *= 100;
         this.$store.dispatch("getFields", this.input);
         //go to transactions page
-        this.$router.push({ path: "/transactions" });
+        this.$router.push({ path: "/" });
       }
     },
     validateForm: function() {

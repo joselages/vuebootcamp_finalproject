@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import formatMoney from "../mixins/formatMoney";
 const mapGetters = require("vuex")["mapGetters"];
 
 export default {
@@ -28,8 +27,7 @@ export default {
   },
   computed: {
     ...mapGetters(["getTransactions"])
-  },
-  mixins: [formatMoney]
+  }
 };
 </script>
 

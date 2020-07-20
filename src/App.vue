@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <navigation></navigation>
+    <total-bar></total-bar>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Navigation from "./components/Navigation";
+import TotalBar from "./components/TotalBar";
 
 export default {
   components: {
-    Navigation
+    Navigation,
+    TotalBar
   },
   data: function() {
     return {
@@ -104,5 +107,11 @@ h1 {
 
 .toggle-switch label:last-of-type {
   border-radius: 0 10px 10px 0;
+}
+
+.balance {
+  background: #cbd5e0;
+  text-align: center;
+  padding: 5px;
 }
 </style>

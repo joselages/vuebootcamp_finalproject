@@ -7,7 +7,7 @@ import Create from "../views/Create";
 Vue.use(VueRouter);
 
 const routes = [
-  { path: "/transactions", component: Transactions },
+  { path: "/", component: Transactions },
   { path: "/transactions/create", component: Create },
 ];
 
