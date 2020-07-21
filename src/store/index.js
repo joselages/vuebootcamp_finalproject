@@ -44,7 +44,7 @@ export default new Vuex.Store({
     //accepts mutations
     getFields: function(state, payload) {
       //so it does not clone the first
-      state.fields.push(JSON.parse(JSON.stringify(payload)));
+      state.fields.unshift(JSON.parse(JSON.stringify(payload)));
     },
     deleteTransaction: function(state, payload) {
       state.fields.splice(payload, 1);
