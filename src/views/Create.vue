@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-col items-center">
+  <div class="w-full flex flex-col items-center" @keyup.enter="addTransaction">
     <h1>Add transaction</h1>
     <div class="toggle-switch">
       <input v-model="input.type" type="radio" id="debit" value="debit" name="transaction_type" />

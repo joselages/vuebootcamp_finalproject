@@ -3,15 +3,23 @@
     <h1>My Transactions</h1>
 
     <template v-if="getTransactions.length > 0">
-      <div v-for="transaction in getTransactions" :key="transaction.id" class="transaction">
+      <div v-for="(transaction, idx) in getTransactions" :key="transaction.id" class="transaction">
         <div class="flex">
-          <div class="w-24">{{transaction.type.toUpperCase()}}</div>
+          <div
+            :class="transaction.type === 'debit' ? 'bg-green-400' : 'bg-red-400'"
+            class="w-6 h-6 rounded-full flex justify-center items-center text-white font-bold text-xl"
+          >{{transaction.type === "debit" ? "+" : "-"}}</div>
           <div
             :title="transaction.description"
-            class="w-40 truncated_txt"
+            class="ml-4 w-40 truncated_txt"
           >{{transaction.description}}</div>
         </div>
-        <div>{{ formatMoney(transaction.amount) }}</div>
+        <div class="flex">
+          <div class="mr-5">{{ formatMoney(transaction.amount) }}</div>
+          <div>
+            <button class="font-bold" @click.prevent="removeTransaction(idx)">X</button>
+          </div>
+        </div>
       </div>
     </template>
     <template v-else>Não tem transações</template>
@@ -27,6 +35,11 @@ export default {
   },
   computed: {
     ...mapGetters(["getTransactions"])
+  },
+  methods: {
+    removeTransaction: function(id) {
+      this.$store.commit("deleteTransaction", id);
+    }
   }
 };
 </script>
