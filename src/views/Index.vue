@@ -38,7 +38,15 @@ export default {
   },
   methods: {
     removeTransaction: function(id) {
-      this.$store.commit("deleteTransaction", id);
+      var self = this;
+      //this returns a promise
+      this.$store.dispatch("openModal").then(function() {
+        //this whill become the function that the resolve passes
+        self.$store.dispatch("deleteTransaction", id);
+      });
+
+      //this.$store.commit("deleteTransaction", id);
+      //console.log(id);
     }
   }
 };
