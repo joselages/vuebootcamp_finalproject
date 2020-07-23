@@ -30,25 +30,25 @@
 const mapGetters = require("vuex")["mapGetters"];
 
 export default {
-  data: function() {
+  data: function () {
     return {};
   },
   computed: {
-    ...mapGetters(["getTransactions"])
+    ...mapGetters(["getTransactions"]),
   },
   methods: {
-    removeTransaction: function(id) {
+    removeTransaction: function (id) {
       var self = this;
       //this returns a promise
-      this.$store.dispatch("openModal").then(function() {
+      this.$store.dispatch("openModal").then(function () {
         //this whill become the function that the resolve passes
         self.$store.dispatch("deleteTransaction", id);
       });
 
       //this.$store.commit("deleteTransaction", id);
       //console.log(id);
-    }
-  }
+    },
+  },
 };
 </script>
 

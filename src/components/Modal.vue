@@ -18,13 +18,13 @@
 const mapGetters = require("vuex")["mapGetters"];
 export default {
   computed: {
-    ...mapGetters(["modalState"])
+    ...mapGetters(["modalState"]),
   },
   methods: {
-    closeModal: function() {
+    closeModal: function () {
       this.$store.dispatch("closeModal");
-    }
-  }
+    },
+  },
 };
 </script>
 

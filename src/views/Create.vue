@@ -58,21 +58,21 @@
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
       input: {
         type: "debit",
         description: "",
-        amount: ""
+        amount: "",
       },
       error: {
         description: "",
-        amount: ""
-      }
+        amount: "",
+      },
     };
   },
   methods: {
-    addTransaction: function() {
+    addTransaction: function () {
       if (this.validateForm() > 0) {
         //stops
         return;
@@ -84,7 +84,7 @@ export default {
         this.$router.push({ path: "/" });
       }
     },
-    validateForm: function() {
+    validateForm: function () {
       this.error.description = "";
       this.error.amount = "";
       var errorsNum = 0;
@@ -99,8 +99,8 @@ export default {
       }
 
       return errorsNum;
-    }
-  }
+    },
+  },
 };
 </script>
 
