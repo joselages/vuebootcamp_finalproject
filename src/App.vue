@@ -87,8 +87,6 @@ h1 {
   text-align: center;
   padding: 1.2em 1.6em;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15),
-    0 1px rgba(255, 255, 255, 0.1);
   transition: all 0.1s ease-in-out;
   text-transform: uppercase;
   font-weight: 800;
@@ -100,17 +98,17 @@ h1 {
 }
 
 .toggle-switch input:checked + label {
-  background-color: #805ad5;
+  background-color: rgba(129, 90, 213, 0.95);
   color: #e8dffa;
   box-shadow: none;
 }
 
 .toggle-switch label:first-of-type {
-  border-radius: 10px 0 0 10px;
+  border-radius: 5px 0 0 5px;
 }
 
 .toggle-switch label:last-of-type {
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 5px 5px 0;
 }
 
 .balance {

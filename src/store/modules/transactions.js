@@ -34,7 +34,6 @@ export default {
   mutations: {
     //accepts mutations
     getFields: function(state, payload) {
-      console.log(payload);
       //so it does not clone the first
       state.fields.unshift(JSON.parse(JSON.stringify(payload)));
     },
