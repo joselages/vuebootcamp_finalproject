@@ -64,6 +64,8 @@ export default {
         type: "debit",
         description: "",
         amount: "",
+        date: null,
+        hour: null,
       },
       error: {
         description: "",
@@ -77,6 +79,7 @@ export default {
         //stops
         return;
       } else {
+        this.getTime();
         //send action to store
         this.input.amount *= 100;
         this.$store.dispatch("getFields", this.input);
@@ -99,6 +102,27 @@ export default {
       }
 
       return errorsNum;
+    },
+    getTime: function () {
+      var today = new Date();
+      var hour =
+        today.getHours() < 10 ? "0" + today.getHours() : today.getHours();
+
+      var minutes =
+        today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
+      var day = today.getDate() < 10 ? "0" + today.getDate() : today.getDate();
+
+      var month =
+        today.getMonth() + 1 < 10
+          ? "0" + (today.getMonth() + 1)
+          : today.getDate() + 1;
+      var year = today.getFullYear();
+
+      var fullTime = hour + ":" + minutes;
+      var fullDate = day + "/" + month + "/" + year;
+
+      this.input.date = fullDate;
+      this.input.hour = fullTime;
     },
   },
 };

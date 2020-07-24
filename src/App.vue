@@ -16,13 +16,13 @@ export default {
   components: {
     Navigation,
     TotalBar,
-    Modal
+    Modal,
   },
-  data: function() {
+  data: function () {
     return {
-      ola: "OLa World!"
+      ola: "OLa World!",
     };
-  }
+  },
 };
 </script>   
 
@@ -80,14 +80,15 @@ h1 {
 }
 
 .toggle-switch label {
-  background-color: #ebf8ff;
-  color: rgba(0, 0, 0, 0.6);
+  background-color: #f5f0ff;
+  color: rgba(0, 0, 0, 0.5);
   font-size: 14px;
   line-height: 1;
   text-align: center;
   padding: 1.2em 1.6em;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15),
+    0 1px rgba(255, 255, 255, 0.1);
   transition: all 0.1s ease-in-out;
   text-transform: uppercase;
   font-weight: 800;
@@ -99,8 +100,8 @@ h1 {
 }
 
 .toggle-switch input:checked + label {
-  background-color: #2a4365;
-  color: #ebf8ff;
+  background-color: #805ad5;
+  color: #e8dffa;
   box-shadow: none;
 }
 

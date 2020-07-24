@@ -2,14 +2,11 @@ export default {
   state: {
     fields: [
       {
-        type: "debit",
-        description: "jantar",
-        amount: 1000,
-      },
-      {
         type: "credit",
-        description: "olo",
-        amount: 2000,
+        description: "Vencimento",
+        amount: 50000,
+        date: "22/7/2020",
+        hour: "10:10",
       },
     ],
   },
@@ -37,6 +34,7 @@ export default {
   mutations: {
     //accepts mutations
     getFields: function(state, payload) {
+      console.log(payload);
       //so it does not clone the first
       state.fields.unshift(JSON.parse(JSON.stringify(payload)));
     },
