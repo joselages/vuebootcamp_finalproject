@@ -10,9 +10,8 @@
     </div>
 
     <div class="input-field">
-      <label for="description">Description</label>
+      <label for="description">Descrição</label>
       <input
-        @keydown="error.description = ''"
         v-model="input.description"
         type="text"
         id="description"
@@ -20,6 +19,17 @@
         placeholder="Enter your description"
       />
     </div>
+
+    <div class="input-field">
+      <label for="hours">Horas</label>
+      <input v-model="input.hour" type="time" id="hours" name="transaction_hour" />
+    </div>
+
+    <div class="input-field">
+      <label for="date">Data</label>
+      <input v-model="input.date" type="date" id="date" name="transaction_date" />
+    </div>
+
     <transition name="fadein">
       <div
         v-if="error.description"
@@ -79,7 +89,7 @@ export default {
         //stops
         return;
       } else {
-        this.getTime();
+        //this.getTime();
         //send action to store
         this.input.amount *= 100;
         this.$store.dispatch("getFields", this.input);
@@ -124,6 +134,26 @@ export default {
       this.input.date = fullDate;
       this.input.hour = fullTime;
     },
+  },
+  mounted() {
+    var today = new Date();
+    var hour =
+      today.getHours() < 10 ? "0" + today.getHours() : today.getHours();
+
+    var minutes =
+      today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
+
+    this.input.hour = hour + ":" + minutes;
+
+    var day = today.getDate() < 10 ? "0" + today.getDate() : today.getDate();
+
+    var month =
+      today.getMonth() + 1 < 10
+        ? "0" + (today.getMonth() + 1)
+        : today.getDate() + 1;
+    var year = today.getFullYear();
+
+    this.input.date = year + "-" + month + "-" + day;
   },
 };
 </script>
