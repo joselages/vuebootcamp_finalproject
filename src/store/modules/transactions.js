@@ -1,14 +1,6 @@
 export default {
   state: {
-    fields: [
-      {
-        type: "credit",
-        description: "Vencimento",
-        amount: 50000,
-        date: "22/7/2020",
-        hour: "10:10",
-      },
-    ],
+    fields: [],
   },
   getters: {
     getTransactions: function(state) {

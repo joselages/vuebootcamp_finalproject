@@ -59,7 +59,7 @@
 
     <div class="mt-4">
       <button
-        class="border-2 border-purple-600 px-16 py-2 rounded"
+        class="border-2 border-purple-600 mb-6 px-16 py-2 rounded"
         @click.prevent="addTransaction"
       >Add</button>
     </div>

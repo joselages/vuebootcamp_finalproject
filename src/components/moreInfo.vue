@@ -3,7 +3,7 @@
     class="absolute bubble_position z-50 bg-gray-400 p-2 rounded text-sm border-b-4 border-purple-600"
   >
     <div class="triangle"></div>
-    <p class="text-purple-900 text-opacity-75">{{hour}} {{date}}</p>
+    <p class="text-purple-900 text-opacity-75">{{hour}} {{formatDate(date)}}</p>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
 
 <style>
 .bubble_position {
-  left: -130%;
+  left: -150%;
   bottom: -300%;
 }
 
