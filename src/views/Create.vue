@@ -103,7 +103,7 @@ export default {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(this.getCoordinates);
         } else {
-          console.log("error");
+          alert("no location");
         }
       }
     },
@@ -127,6 +127,7 @@ export default {
         .then(function (data) {
           self.input.address = data.data[0];
           self.loadingState = false;
+          console.log(self.input.address);
         });
     },
     addTransaction: function () {

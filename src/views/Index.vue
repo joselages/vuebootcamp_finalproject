@@ -4,8 +4,15 @@
 
     <template v-if="getTransactions.length > 0">
       <div v-for="(transaction, idx) in getTransactions" :key="transaction.id" class="transaction">
-        <div @click="infoHover(idx)" class="cursor-pointer relative">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <div class="relative">
+          <svg
+            @click="infoHover(idx)"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            class="cursor-pointer"
+          >
             <path
               class="heroicon-ui opacity-75"
               d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
@@ -23,11 +30,17 @@
           >{{transaction.type === "credit" ? "+" : "-"}}</div>
           <div class="ml-4 w-40">
             <h3 :title="transaction.description" class="truncated_txt">{{transaction.description}}</h3>
-            <address
+            <!--             <address
               v-if="transaction.address"
               :title="transaction.address.label"
               class="text-xs truncated_txt not-italic"
-            >@ {{transaction.address.label}}</address>
+            >@ {{transaction.address.label}}</address>-->
+            <a
+              v-if="transaction.address.label"
+              class="text-purple-600 underline"
+              target="_blank"
+              v-bind:href="'http://maps.google.com/?q=' + transaction.address.label "
+            >Ver no mapa</a>
           </div>
         </div>
         <div class="flex">
