@@ -3,8 +3,12 @@
     <h1>My Transactions</h1>
 
     <template v-if="getTransactions.length > 0">
-      <div v-for="(transaction, idx) in getTransactions" :key="transaction.id" class="transaction">
-        <div class="relative">
+      <div
+        v-for="(transaction, idx) in getTransactions"
+        :key="transaction.id"
+        class="transaction relative"
+      >
+        <div>
           <svg
             @click="infoHover(idx)"
             xmlns="http://www.w3.org/2000/svg"
@@ -14,12 +18,17 @@
             class="cursor-pointer"
           >
             <path
-              class="heroicon-ui opacity-75"
+              class="opacity-75"
               d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
             />
           </svg>
           <transition name="popin">
-            <more-info v-if="showInfo === idx" :date="transaction.date" :hour="transaction.hour" />
+            <more-info
+              class="absolute bubble_position z-50 bg-gray-400 p-2 rounded text-sm border-b-4 border-purple-600"
+              v-if="showInfo === idx"
+              :date="transaction.date"
+              :hour="transaction.hour"
+            />
           </transition>
         </div>
         <div class="flex">
@@ -108,7 +117,7 @@ export default {
 .popin-enter,
 .popin-leave-to {
   opacity: 0;
-  transform: translate3d(0, -10px, 0);
+  transform: translate3d(87%, -10px, 0);
 }
 
 .popin-enter-active,
