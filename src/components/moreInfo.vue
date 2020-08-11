@@ -13,9 +13,9 @@ export default {
 
 <style>
 .bubble_position {
-  left: -50%;
-  transform: translateX(87%);
-  bottom: -40px;
+  transform: translate3d(-50%, 0, 0);
+  left: 50%;
+  top: calc(100% + 10px);
 }
 
 .triangle {

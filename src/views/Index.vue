@@ -8,7 +8,7 @@
         :key="transaction.id"
         class="transaction relative"
       >
-        <div>
+        <div class="relative" style="height:min-content">
           <svg
             @click="infoHover(idx)"
             xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +117,7 @@ export default {
 .popin-enter,
 .popin-leave-to {
   opacity: 0;
-  transform: translate3d(87%, -10px, 0);
+  transform: translate3d(-50%, -5px, 0);
 }
 
 .popin-enter-active,
