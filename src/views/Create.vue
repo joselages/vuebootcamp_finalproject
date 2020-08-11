@@ -29,19 +29,9 @@
       </transition>
 
       <div class="input-field">
-        <label for="hours">Horas</label>
-        <input v-model="input.hour" type="time" id="hours" name="transaction_hour" />
-      </div>
-
-      <div class="input-field">
-        <label for="date">Data</label>
-        <input v-model="input.date" type="date" id="date" name="transaction_date" />
-      </div>
-
-      <div class="input-field">
-        <label for="amount">Amount</label>
+        <label for="amount">Quantia</label>
         <div>
-          <span class="currency">$</span>
+          <span class="currency">€</span>
           <input
             @keydown="error.amount = ''"
             v-model="input.amount"
@@ -58,20 +48,48 @@
         >{{error.amount}}</div>
       </transition>
 
+      <div class="input-field">
+        <label for="hours">Horas</label>
+        <input v-model="input.hour" type="time" id="hours" name="transaction_hour" />
+      </div>
+
+      <div class="input-field">
+        <label for="date">Data</label>
+        <input v-model="input.date" type="date" id="date" name="transaction_date" />
+      </div>
+
+      <div class="input-field">
+        <label for="location">Local</label>
+        <input
+          v-model="input.location"
+          type="text"
+          id="location"
+          name="transaction_location"
+          :disabled="input.currentLocation?true:false"
+        />
+      </div>
+
       <div class="ml-auto">
-        <label for="location">
-          <input @click="getLocation" type="checkbox" v-model="input.location" />
+        <label for="clocation">
+          <input
+            @click="getLocation"
+            id="clocation"
+            type="checkbox"
+            v-model="input.currentLocation"
+          />
           Add current location
         </label>
       </div>
 
       <div class="mt-4">
         <button
-          v-if="!loadingState"
-          class="border-2 border-purple-600 px-16 py-2 rounded"
+          :disabled="loadingState?true:false"
+          class="border-2 border-purple-600 w-48 flex justify-center py-2 rounded"
           @click.prevent="addTransaction"
-        >Add</button>
-        <img v-else src="../assets/loading.gif" />
+        >
+          <span v-if="!loadingState">Add</span>
+          <img v-else class="w-6" src="../assets/loading.gif" />
+        </button>
       </div>
     </form>
   </div>
@@ -87,8 +105,8 @@ export default {
         amount: "",
         date: null,
         hour: null,
-        location: false,
-        address: "",
+        location: "",
+        currentLocation: false,
       },
       loadingState: false,
       error: {
@@ -99,18 +117,18 @@ export default {
   },
   methods: {
     getLocation: function () {
-      if (!this.input.location) {
+      this.input.location = "";
+      if (!this.input.currentLocation) {
         if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(this.getCoordinates);
+          navigator.geolocation.getCurrentPosition(this.getAddress);
         } else {
-          alert("no location");
+          console.log("error");
         }
       }
     },
-    getCoordinates: function (data) {
-      this.getAddress(data.coords.latitude, data.coords.longitude);
-    },
-    getAddress: function (lat, lon) {
+    getAddress: function (data) {
+      var lat = data.coords.latitude;
+      var lon = data.coords.longitude;
       var apikey = "bc1943561fb626f3a5b51febb8ec7117";
       var self = this;
       self.loadingState = true;
@@ -125,9 +143,8 @@ export default {
       )
         .then((response) => response.json())
         .then(function (data) {
-          self.input.address = data.data[0];
+          self.input.location = data.data[0].label;
           self.loadingState = false;
-          console.log(self.input.address);
         });
     },
     addTransaction: function () {
@@ -135,7 +152,6 @@ export default {
         //stops
         return;
       } else {
-        //this.getTime();
         //send action to store
         this.input.amount *= 100;
         this.$store.dispatch("getFields", this.input);
@@ -158,27 +174,6 @@ export default {
       }
 
       return errorsNum;
-    },
-    getTime: function () {
-      var today = new Date();
-      var hour =
-        today.getHours() < 10 ? "0" + today.getHours() : today.getHours();
-
-      var minutes =
-        today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
-      var day = today.getDate() < 10 ? "0" + today.getDate() : today.getDate();
-
-      var month =
-        today.getMonth() + 1 < 10
-          ? "0" + (today.getMonth() + 1)
-          : today.getDate() + 1;
-      var year = today.getFullYear();
-
-      var fullTime = hour + ":" + minutes;
-      var fullDate = day + "/" + month + "/" + year;
-
-      this.input.date = fullDate;
-      this.input.hour = fullTime;
     },
   },
   mounted() {

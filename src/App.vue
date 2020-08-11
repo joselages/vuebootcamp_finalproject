@@ -18,11 +18,6 @@ export default {
     TotalBar,
     Modal,
   },
-  data: function () {
-    return {
-      ola: "OLa World!",
-    };
-  },
 };
 </script>   
 

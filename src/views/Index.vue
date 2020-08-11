@@ -30,16 +30,11 @@
           >{{transaction.type === "credit" ? "+" : "-"}}</div>
           <div class="ml-4 w-40">
             <h3 :title="transaction.description" class="truncated_txt">{{transaction.description}}</h3>
-            <!--             <address
-              v-if="transaction.address"
-              :title="transaction.address.label"
-              class="text-xs truncated_txt not-italic"
-            >@ {{transaction.address.label}}</address>-->
             <a
-              v-if="transaction.address.label"
+              v-if="transaction.location"
               class="text-purple-600 underline"
               target="_blank"
-              v-bind:href="'http://maps.google.com/?q=' + transaction.address.label "
+              v-bind:href="'http://maps.google.com/?q=' + transaction.location"
             >Ver no mapa</a>
           </div>
         </div>
