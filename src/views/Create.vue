@@ -11,8 +11,9 @@
       </div>
 
       <div class="input-field">
-        <label for="description">Descrição</label>
+        <label for="description">Description</label>
         <input
+          @keydown="error.description = ''"
           v-model="input.description"
           type="text"
           id="description"
@@ -29,13 +30,14 @@
       </transition>
 
       <div class="input-field">
-        <label for="amount">Quantia</label>
+        <label for="amount">Amount</label>
         <div>
           <span class="currency">€</span>
           <input
             @keydown="error.amount = ''"
             v-model="input.amount"
-            type="text"
+            type="tel"
+            format="^[0-9]+$"
             id="amount"
             name="transaction_amount"
           />
@@ -126,27 +128,6 @@ export default {
         }
       }
     },
-    getAddress: function (data) {
-      var lat = data.coords.latitude;
-      var lon = data.coords.longitude;
-      var apikey = "bc1943561fb626f3a5b51febb8ec7117";
-      var self = this;
-      self.loadingState = true;
-
-      fetch(
-        "http://api.positionstack.com/v1/reverse?access_key=" +
-          apikey +
-          "&query=" +
-          lat +
-          "," +
-          lon
-      )
-        .then((response) => response.json())
-        .then(function (data) {
-          self.input.location = data.data[0].label;
-          self.loadingState = false;
-        });
-    },
     addTransaction: function () {
       if (this.validateForm() > 0) {
         //stops
@@ -168,8 +149,8 @@ export default {
         this.error.description = "Please enter a description";
         errorsNum++;
       }
-      if (!this.input.amount) {
-        this.error.amount = "Please enter an  amount";
+      if (!this.input.amount || !/^[0-9]*$/.test(this.input.amount)) {
+        this.error.amount = "Please enter an valid amount";
         errorsNum++;
       }
 
@@ -177,24 +158,7 @@ export default {
     },
   },
   mounted() {
-    var today = new Date();
-    var hour =
-      today.getHours() < 10 ? "0" + today.getHours() : today.getHours();
-
-    var minutes =
-      today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
-
-    this.input.hour = hour + ":" + minutes;
-
-    var day = today.getDate() < 10 ? "0" + today.getDate() : today.getDate();
-
-    var month =
-      today.getMonth() + 1 < 10
-        ? "0" + (today.getMonth() + 1)
-        : today.getDate() + 1;
-    var year = today.getFullYear();
-
-    this.input.date = year + "-" + month + "-" + day;
+    this.currentTime();
   },
 };
 </script>
