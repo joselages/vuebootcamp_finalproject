@@ -51,23 +51,24 @@
       </transition>
 
       <div class="input-field">
-        <label for="hours">Horas</label>
+        <label for="hours">Time</label>
         <input v-model="input.hour" type="time" id="hours" name="transaction_hour" />
       </div>
 
       <div class="input-field">
-        <label for="date">Data</label>
+        <label for="date">Date</label>
         <input v-model="input.date" type="date" id="date" name="transaction_date" />
       </div>
 
       <div class="input-field">
-        <label for="location">Local</label>
+        <label for="location">Place</label>
         <input
           v-model="input.location"
           type="text"
           id="location"
           name="transaction_location"
           :disabled="input.currentLocation?true:false"
+          placeholder="Enter the transaction place"
         />
       </div>
 
