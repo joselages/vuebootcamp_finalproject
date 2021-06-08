@@ -1,15 +1,15 @@
 export default {
   methods: {
     getAddress: function(data) {
-      var lat = data.coords.latitude;
-      var lon = data.coords.longitude;
-      var apikey = "bc1943561fb626f3a5b51febb8ec7117";
-      var self = this;
+      let lat = data.coords.latitude;
+      let lon = data.coords.longitude;
+      //let apikey = "";
+      let self = this;
       self.loadingState = true;
 
       fetch(
         "http://api.positionstack.com/v1/reverse?access_key=" +
-          apikey +
+        process.env.VUE_APP_API_KEY +
           "&query=" +
           lat +
           "," +
@@ -17,6 +17,7 @@ export default {
       )
         .then((response) => response.json())
         .then(function(data) {
+          console.log(data)
           self.input.location = data.data[0].label;
           self.loadingState = false;
         });
