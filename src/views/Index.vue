@@ -24,7 +24,7 @@
           </svg>
           <transition name="popin">
             <more-info
-              class="absolute bubble_position z-50 bg-gray-400 p-2 rounded text-sm border-b-4 border-purple-600"
+              class="absolute bubble_position z-50 bg-gray-200 p-2 rounded text-sm border-b-4 border-purple-600 shadow"
               v-if="showInfo === idx"
               :date="transaction.date"
               :hour="transaction.hour"
