@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-col items-center">
-    <h1>My Transactions</h1>
+    <h1 class="my-5">My Transactions</h1>
 
-    <template v-if="getTransactions.length > 0">
+    <template v-if="getTransactions.length">
       <div
         v-for="(transaction, idx) in getTransactions"
         :key="transaction.id"
         class="transaction relative"
       >
-        <div class="relative" style="height:min-content">
+        <div class="relative" style="height: min-content">
           <svg
             @click="infoHover(idx)"
             xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,17 @@
           </svg>
           <transition name="popin">
             <more-info
-              class="absolute bubble_position z-50 bg-gray-200 p-2 rounded text-sm border-b-4 border-purple-600 shadow"
+              class="
+                absolute
+                bubble_position
+                z-50
+                bg-gray-200
+                p-2
+                rounded
+                text-sm
+                border-b-4 border-purple-600
+                shadow
+              "
               v-if="showInfo === idx"
               :date="transaction.date"
               :hour="transaction.hour"
@@ -34,23 +44,42 @@
         <div class="flex">
           <div
             :title="transaction.type"
-            :class="transaction.type === 'credit' ? 'bg-green-400' : 'bg-red-400'"
-            class="w-6 h-6 rounded-full flex justify-center items-center text-white font-bold text-xl"
-          >{{transaction.type === "credit" ? "+" : "-"}}</div>
+            :class="
+              transaction.type === 'credit' ? 'bg-green-400' : 'bg-red-400'
+            "
+            class="
+              w-6
+              h-6
+              rounded-full
+              flex
+              justify-center
+              items-center
+              text-white
+              font-bold
+              text-xl
+            "
+          >
+            {{ transaction.type === "credit" ? "+" : "-" }}
+          </div>
           <div class="ml-4 w-40">
-            <h3 :title="transaction.description" class="truncated_txt">{{transaction.description}}</h3>
+            <h3 :title="transaction.description" class="truncated_txt">
+              {{ transaction.description }}
+            </h3>
             <a
               v-if="transaction.location"
               class="text-purple-600 underline"
               target="_blank"
               v-bind:href="'http://maps.google.com/?q=' + transaction.location"
-            >Ver no mapa</a>
+              >Ver no mapa</a
+            >
           </div>
         </div>
         <div class="flex">
           <div class="mr-5">{{ formatMoney(transaction.amount) }}</div>
           <div>
-            <button class="font-bold" @click.prevent="removeTransaction(idx)">X</button>
+            <button class="font-bold" @click.prevent="removeTransaction(idx)">
+              X
+            </button>
           </div>
         </div>
       </div>
@@ -80,7 +109,7 @@ export default {
       var self = this;
       //this returns a promise
       this.$store.dispatch("openModal").then(function () {
-        //this whill become the function that the resolve passes
+        //this will become the function that the resolve passes
         self.$store.dispatch("deleteTransaction", id);
       });
 
@@ -94,6 +123,7 @@ export default {
         this.showInfo = id;
       }
     },
+
   },
 };
 </script>

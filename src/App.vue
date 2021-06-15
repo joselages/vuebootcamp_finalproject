@@ -38,15 +38,27 @@ h1 {
 .input-field {
   display: flex;
   flex-direction: column;
-  width: 20em;
+  width: 100%;
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
-  margin-bottom: 20px;
+  margin-bottom: .75rem;
+}
+
+.input-field.-half-width {
+  width: 50%;
+}
+
+.input-field.-error {
+  border-bottom: 2px solid #e53e3e;
+}
+
+.input-field.-half-width:first-of-type {
+  margin-right: 1rem;
 }
 
 .input-field label {
   font-size: 0.75em;
-  margin-bottom: 10px;
+  margin-bottom: .1rem;
 }
 
 .input-field input {

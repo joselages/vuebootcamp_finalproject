@@ -1,16 +1,43 @@
 <template>
   <div class="w-full flex flex-col items-center" @keyup.enter="addTransaction">
-    <h1>Add transaction</h1>
-    <form class="border p-4 flex flex-col items-center mb-6">
+    <h1 class="my-5">Add transaction</h1>
+    <form
+      class="
+        border
+        p-4
+        flex flex-col
+        items-center
+        mb-6
+        w-11/12
+        md:w-9/12
+        sm:1/2
+        lg:w-2/3
+      "
+    >
       <div class="toggle-switch">
-        <input v-model="input.type" type="radio" id="debit" value="debit" name="transaction_type" />
+        <input
+          v-model="input.type"
+          type="radio"
+          id="debit"
+          value="debit"
+          name="transaction_type"
+        />
         <label for="debit">Debit</label>
 
-        <input v-model="input.type" type="radio" id="credit" value="credit" name="transaction_type" />
+        <input
+          v-model="input.type"
+          type="radio"
+          id="credit"
+          value="credit"
+          name="transaction_type"
+        />
         <label for="credit">Credit</label>
       </div>
 
-      <div class="input-field">
+      <div
+        class="input-field relative"
+        :class="error.description ? '-error' : ''"
+      >
         <label for="description">Description</label>
         <input
           @keydown="error.description = ''"
@@ -22,16 +49,20 @@
         />
       </div>
 
-      <transition name="fadein">
-        <div
-          v-if="error.description"
-          class="bg-red-600 py-1 px-2 mb-2 txt-2 text-white text-xs rounded"
-        >{{error.description}}</div>
-      </transition>
+      <div class="h-8">
+        <transition name="fadein">
+          <div
+            v-if="error.description"
+            class="bg-red-600 py-1 px-2 mb-2 txt-2 text-white text-xs rounded"
+          >
+            {{ error.description }}
+          </div>
+        </transition>
+      </div>
 
-      <div class="input-field">
+      <div class="input-field" :class="error.amount ? '-error' : ''">
         <label for="amount">Amount</label>
-        <div>
+        <div class="flex">
           <span class="currency">€</span>
           <input
             @keydown="error.amount = ''"
@@ -40,24 +71,41 @@
             format="^[0-9]+$"
             id="amount"
             name="transaction_amount"
+            class="w-full"
           />
         </div>
       </div>
-      <transition name="fadein">
-        <div
-          class="bg-red-600 py-1 px-2 mb-2 txt-2 text-white text-xs rounded"
-          v-if="error.amount"
-        >{{error.amount}}</div>
-      </transition>
-
-      <div class="input-field">
-        <label for="hours">Time</label>
-        <input v-model="input.hour" type="time" id="hours" name="transaction_hour" />
+      <div class="h-8">
+        <transition name="fadein">
+          <div
+            class="bg-red-600 py-1 px-2 mb-2 txt-2 text-white text-xs rounded"
+            v-if="error.amount"
+          >
+            {{ error.amount }}
+          </div>
+        </transition>
       </div>
 
-      <div class="input-field">
-        <label for="date">Date</label>
-        <input v-model="input.date" type="date" id="date" name="transaction_date" />
+      <div class="flex w-full mb-3">
+        <div class="input-field -half-width">
+          <label for="hours">Time</label>
+          <input
+            v-model="input.hour"
+            type="time"
+            id="hours"
+            name="transaction_hour"
+          />
+        </div>
+
+        <div class="input-field -half-width">
+          <label for="date">Date</label>
+          <input
+            v-model="input.date"
+            type="date"
+            id="date"
+            name="transaction_date"
+          />
+        </div>
       </div>
 
       <div class="input-field">
@@ -67,27 +115,40 @@
           type="text"
           id="location"
           name="transaction_location"
-          :disabled="input.currentLocation?true:false"
+          :disabled="input.currentLocation ? true : false"
           placeholder="Enter the transaction place"
         />
       </div>
 
-      <div class="ml-auto">
-        <label for="clocation">
+      <div class="mr-auto">
+        <label for="clocation" class="cursor-pointer text-sm">
           <input
             @click="getLocation"
             id="clocation"
             type="checkbox"
             v-model="input.currentLocation"
+            class="cursor-pointer"
           />
           Add current location
         </label>
       </div>
 
-      <div class="mt-4">
+      <div class="mt-4 ml-auto">
         <button
-          :disabled="loadingState?true:false"
-          class="border-2 border-purple-600 w-48 flex justify-center py-2 rounded"
+          :disabled="loadingState ? true : false"
+          class="
+            border-2 border-purple-600
+            w-48
+            flex
+            justify-center
+            py-2
+            rounded
+            shadow-md
+            transform
+            duration-300
+            hover:shadow-lg
+            hover:-translate-y-px
+          "
           @click.prevent="addTransaction"
         >
           <span v-if="!loadingState">Add</span>
@@ -99,6 +160,8 @@
 </template>
 
 <script>
+const mapGetters = require("vuex")["mapGetters"];
+
 export default {
   data: function () {
     return {
@@ -139,6 +202,9 @@ export default {
         this.$store.dispatch("getFields", this.input);
         //go to transactions page
         this.$router.push({ path: "/" });
+
+        //add to LS string
+        this.$store.commit('jsonToString', this.$store.getters.getTransactions)
       }
     },
     validateForm: function () {
@@ -158,9 +224,15 @@ export default {
       return errorsNum;
     },
   },
+  computed:{
+    ...mapGetters(["getLSString"]),
+  },
   mounted() {
     this.currentTime();
   },
+  beforeDestroy(){
+    this.sendToLS(this.$store.getters.getLSString);
+  }
 };
 </script>
 

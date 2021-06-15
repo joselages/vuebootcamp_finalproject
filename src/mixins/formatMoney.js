@@ -1,11 +1,11 @@
 export default {
   methods: {
     formatMoney: function(amount) {
-      var sign = "$ ";
+      var sign = "€ ";
       var money = amount / 100;
 
       if (amount < 0) {
-        sign = "-$ ";
+        sign = "-€ ";
         //so it becames positive and the - sign dissapear
         money *= -1;
       }
