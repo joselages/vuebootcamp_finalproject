@@ -9,10 +9,11 @@ export default {
   },
   mutations: {
     jsonToString: function(state, data) {
-        state.lsString = JSON.stringify(data);
-        console.log(state.lsString)
+      state.lsString = JSON.stringify(data);
     },
-
+    stringToJSON: function(state, data) {
+      state.lsString = JSON.parse(data);
+    },
     //   closeModal: function(state) {
     //     //clean up the promise resolve
     //     state.modalResolve = null;

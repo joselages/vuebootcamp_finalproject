@@ -22,7 +22,7 @@
           value="debit"
           name="transaction_type"
         />
-        <label for="debit">Debit</label>
+        <label for="debit"><span class="checkbox-emoji">💸</span> Gastei</label>
 
         <input
           v-model="input.type"
@@ -31,7 +31,7 @@
           value="credit"
           name="transaction_type"
         />
-        <label for="credit">Credit</label>
+        <label for="credit"><span class="checkbox-emoji">🤑</span> Ganhei</label>
       </div>
 
       <div
@@ -187,8 +187,6 @@ export default {
       if (!this.input.currentLocation) {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(this.getAddress);
-        } else {
-          console.log("error");
         }
       }
     },

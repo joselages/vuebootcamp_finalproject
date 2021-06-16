@@ -18,6 +18,9 @@ export default {
     TotalBar,
     Modal,
   },
+  created() {
+    this.getFromLS();
+  },
 };
 </script>   
 
@@ -41,7 +44,7 @@ h1 {
   width: 100%;
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
-  margin-bottom: .75rem;
+  margin-bottom: 0.75rem;
 }
 
 .input-field.-half-width {
@@ -58,7 +61,7 @@ h1 {
 
 .input-field label {
   font-size: 0.75em;
-  margin-bottom: .1rem;
+  margin-bottom: 0.1rem;
 }
 
 .input-field input {
@@ -108,6 +111,16 @@ h1 {
   background-color: rgba(129, 90, 213, 0.95);
   color: #e8dffa;
   box-shadow: none;
+}
+
+.checkbox-emoji {
+  display: inline-block;
+  transform: scale(.9);
+	transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toggle-switch input:checked + label > .checkbox-emoji {
+  transform: scale(1.4);
 }
 
 .toggle-switch label:first-of-type {

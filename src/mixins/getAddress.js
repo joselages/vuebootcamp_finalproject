@@ -1,6 +1,8 @@
 export default {
   methods: {
     getAddress: function(data) {
+      console.log(data)
+
       let lat = data.coords.latitude;
       let lon = data.coords.longitude;
       //let apikey = "";
@@ -17,7 +19,6 @@ export default {
       )
         .then((response) => response.json())
         .then(function(data) {
-          console.log(data)
           self.input.location = data.data[0].label;
           self.loadingState = false;
         });

@@ -24,6 +24,9 @@ export default {
     },
   },
   mutations: {
+    getTransactionsFromLS(state, payload){
+      state.fields=payload;
+    },
     //accepts mutations
     getFields: function(state, payload) {
       //so it does not clone the first

@@ -43,7 +43,7 @@
         </div>
         <div class="flex">
           <div
-            :title="transaction.type"
+            :title="transaction.type === 'credit' ? 'Ganhei' : 'Gastei' "
             :class="
               transaction.type === 'credit' ? 'bg-green-400' : 'bg-red-400'
             "
@@ -57,6 +57,7 @@
               text-white
               font-bold
               text-xl
+              select-none
             "
           >
             {{ transaction.type === "credit" ? "+" : "-" }}
@@ -77,8 +78,8 @@
         <div class="flex">
           <div class="mr-5">{{ formatMoney(transaction.amount) }}</div>
           <div>
-            <button class="font-bold" @click.prevent="removeTransaction(idx)">
-              X
+            <button class="font-bold text-2xl leading-none" @click.prevent="removeTransaction(idx)">
+              &times;
             </button>
           </div>
         </div>
@@ -111,10 +112,9 @@ export default {
       this.$store.dispatch("openModal").then(function () {
         //this will become the function that the resolve passes
         self.$store.dispatch("deleteTransaction", id);
+        self.$store.commit('jsonToString', self.$store.getters.getTransactions);
+        self.sendToLS(self.$store.getters.getLSString);
       });
-
-      //this.$store.commit("deleteTransaction", id);
-      //console.log(id);
     },
     infoHover: function (id) {
       if (id === this.showInfo) {
