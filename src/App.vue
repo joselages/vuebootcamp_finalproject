@@ -63,9 +63,9 @@ h1 {
 }
 
 .input-field input:not(.-no-border) {
-  padding: .75rem;
+  padding: 0.75rem;
   border: 1px solid #e2e8f0;
-  border-radius:.25rem;
+  border-radius: 0.25rem;
 }
 
 .currency {
@@ -91,16 +91,24 @@ h1 {
 
 .toggle-switch label {
   background-color: rgba(0, 0, 0, 0.01);
-  color: rgba(35, 26, 54, 0.295);
+  color: rgba(165, 154, 189, 0.45);
   font-size: 14px;
   line-height: 1;
   text-align: center;
   padding: 1.2em 1.6em;
-  border: 1px solid #e2e8f0;
+  border: 2px solid #e2e8f0;
   transition: all 0.1s ease-in-out;
   text-transform: uppercase;
   font-weight: 800;
   letter-spacing: 0.2em;
+}
+
+.toggle-switch label:first-of-type {
+  border-right-color: transparent;
+}
+
+.toggle-switch label:last-of-type {
+  border-left-color: transparent;
 }
 
 .toggle-switch label:hover {
@@ -108,10 +116,25 @@ h1 {
 }
 
 .toggle-switch input:checked + label {
-  border:1px solid rgba(129, 90, 213, 0.95);
+  border: 2px solid rgba(129, 90, 213, 0.95);
   background-color: rgba(129, 90, 213, 0.15);
   color: rgba(129, 90, 213, 0.95);
   box-shadow: none;
+}
+
+.toggle-switch label:hover{
+  opacity:.75;
+}
+
+.input-checkbox {
+  width:20px;
+  height: 20px;
+  filter: hue-rotate(410deg);
+  margin-right: .25rem;
+}
+
+.input-checkbox {
+  filter: hue-rotate(410deg);
 }
 
 .checkbox-emoji {

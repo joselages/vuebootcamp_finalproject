@@ -125,13 +125,13 @@
       </div>
 
       <div class="mr-auto">
-        <label for="clocation" class="cursor-pointer text-sm">
+        <label for="clocation" class="cursor-pointer text-sm flex">
           <input
             @click="getLocation"
             id="clocation"
             type="checkbox"
             v-model="input.currentLocation"
-            class="cursor-pointer"
+            class="cursor-pointer input-checkbox"
           />
           Add current location
         </label>
@@ -241,7 +241,7 @@ export default {
   display: flex;
   justify-content: center;
   border-radius: 0.25rem;
-  background-color: rgb(128, 90, 213);
+  background-color: #805ad5;
   box-shadow: 0 0 8px -1px rgba(128, 90, 213, 0.5),
     0 0 16px -1px rgba(128, 90, 213, 0.5),
     0 0 32px -1px rgba(128, 90, 213, 0.5);
