@@ -12,6 +12,7 @@
         md:w-9/12
         sm:1/2
         lg:w-2/3
+        rounded
       "
     >
       <div class="toggle-switch">
@@ -31,13 +32,12 @@
           value="credit"
           name="transaction_type"
         />
-        <label for="credit"><span class="checkbox-emoji">🤑</span> Ganhei</label>
+        <label for="credit"
+          ><span class="checkbox-emoji">🤑</span> Ganhei</label
+        >
       </div>
 
-      <div
-        class="input-field relative"
-        :class="error.description ? '-error' : ''"
-      >
+      <div class="input-field relative">
         <label for="description">Description</label>
         <input
           @keydown="error.description = ''"
@@ -46,6 +46,7 @@
           id="description"
           name="transaction_description"
           placeholder="Enter your description"
+          :class="error.description ? '-error' : ''"
         />
       </div>
 
@@ -60,9 +61,12 @@
         </transition>
       </div>
 
-      <div class="input-field" :class="error.amount ? '-error' : ''">
+      <div class="input-field">
         <label for="amount">Amount</label>
-        <div class="flex">
+        <div
+          class="flex border rounded px-3 py-1"
+          :class="error.amount ? '-error' : ''"
+        >
           <span class="currency">€</span>
           <input
             @keydown="error.amount = ''"
@@ -71,7 +75,7 @@
             format="^[0-9]+$"
             id="amount"
             name="transaction_amount"
-            class="w-full"
+            class="w-full -no-border"
           />
         </div>
       </div>
@@ -137,17 +141,7 @@
         <button
           :disabled="loadingState ? true : false"
           class="
-            border-2 border-purple-600
-            w-48
-            flex
-            justify-center
-            py-2
-            rounded
-            shadow-md
-            transform
-            duration-300
-            hover:shadow-lg
-            hover:-translate-y-px
+            input-submit
           "
           @click.prevent="addTransaction"
         >
@@ -160,8 +154,6 @@
 </template>
 
 <script>
-const mapGetters = require("vuex")["mapGetters"];
-
 export default {
   data: function () {
     return {
@@ -202,7 +194,8 @@ export default {
         this.$router.push({ path: "/" });
 
         //add to LS string
-        this.$store.commit('jsonToString', this.$store.getters.getTransactions)
+        this.$store.commit("jsonToString", this.$store.getters.getTransactions);
+        this.sendToLS(this.$store.getters.getLSString);
       }
     },
     validateForm: function () {
@@ -222,15 +215,9 @@ export default {
       return errorsNum;
     },
   },
-  computed:{
-    ...mapGetters(["getLSString"]),
-  },
   mounted() {
     this.currentTime();
   },
-  beforeDestroy(){
-    this.sendToLS(this.$store.getters.getLSString);
-  }
 };
 </script>
 
@@ -244,5 +231,27 @@ export default {
 .fadein-enter-active,
 .fadein-leave-active {
   transition: all 0.5s ease;
+}
+
+.input-submit {
+  width: 12rem;
+  color: white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 0.25rem;
+  background-color: rgb(128, 90, 213);
+  box-shadow: 0 0 8px -1px rgba(128, 90, 213, 0.5),
+    0 0 16px -1px rgba(128, 90, 213, 0.5),
+    0 0 32px -1px rgba(128, 90, 213, 0.5);
+    transition: all .3s ease;
+}
+
+.input-submit:hover {
+  transform: scale(0.98);
+  box-shadow: 0 0 5px -1px rgba(128, 90, 213, 0.5),
+    0 0 13px -1px rgba(128, 90, 213, 0.5),
+    0 0 29px -1px rgba(128, 90, 213, 0.5);
 }
 </style>

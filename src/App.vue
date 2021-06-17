@@ -42,8 +42,6 @@ h1 {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ccc;
   margin-bottom: 0.75rem;
 }
 
@@ -51,8 +49,8 @@ h1 {
   width: 50%;
 }
 
-.input-field.-error {
-  border-bottom: 2px solid #e53e3e;
+.-error {
+  border: 1px solid #e53e3e !important;
 }
 
 .input-field.-half-width:first-of-type {
@@ -64,8 +62,10 @@ h1 {
   margin-bottom: 0.1rem;
 }
 
-.input-field input {
-  padding: 10px 0;
+.input-field input:not(.-no-border) {
+  padding: .75rem;
+  border: 1px solid #e2e8f0;
+  border-radius:.25rem;
 }
 
 .currency {
@@ -90,13 +90,13 @@ h1 {
 }
 
 .toggle-switch label {
-  background-color: #f5f0ff;
-  color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.01);
+  color: rgba(35, 26, 54, 0.295);
   font-size: 14px;
   line-height: 1;
   text-align: center;
   padding: 1.2em 1.6em;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid #e2e8f0;
   transition: all 0.1s ease-in-out;
   text-transform: uppercase;
   font-weight: 800;
@@ -108,15 +108,16 @@ h1 {
 }
 
 .toggle-switch input:checked + label {
-  background-color: rgba(129, 90, 213, 0.95);
-  color: #e8dffa;
+  border:1px solid rgba(129, 90, 213, 0.95);
+  background-color: rgba(129, 90, 213, 0.15);
+  color: rgba(129, 90, 213, 0.95);
   box-shadow: none;
 }
 
 .checkbox-emoji {
   display: inline-block;
-  transform: scale(.9);
-	transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: scale(0.9);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .toggle-switch input:checked + label > .checkbox-emoji {
