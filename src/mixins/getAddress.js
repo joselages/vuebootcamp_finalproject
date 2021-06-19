@@ -28,7 +28,7 @@ export default {
       )
         .then((response) => response.json())
         .then(function(data) {
-          //console.log(data)
+          console.log(data)
           self.input.location = data.features[0].place_name;
           self.loadingState = false;
         });

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center">
-    <h1 class="my-5">My Transactions</h1>
+    <h1 class="my-5">Transações</h1>
 
     <template v-if="getTransactions.length">
       <div

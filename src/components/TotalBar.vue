@@ -1,7 +1,7 @@
 <template>
   <div class="balance">
     <h2>
-      Account Balance
+      Balanço de conta: 
       <strong>{{formatMoney(getBalance)}}</strong>
     </h2>
   </div>

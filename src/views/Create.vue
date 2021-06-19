@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex flex-col items-center" @keyup.enter="addTransaction">
-    <h1 class="my-5">Add transaction</h1>
+    <h1 class="my-5">Adicionar transação</h1>
     <form
       class="
         border
@@ -11,7 +11,7 @@
         w-11/12
         md:w-9/12
         sm:1/2
-        lg:w-2/3
+        lg:w-2/6
         rounded
       "
     >
@@ -38,14 +38,14 @@
       </div>
 
       <div class="input-field relative">
-        <label for="description">Description</label>
+        <label for="description">Descrição</label>
         <input
           @keydown="error.description = ''"
           v-model="input.description"
           type="text"
           id="description"
           name="transaction_description"
-          placeholder="Enter your description"
+          placeholder="Ex: Jantar de aniversário"
           :class="error.description ? '-error' : ''"
         />
       </div>
@@ -62,7 +62,7 @@
       </div>
 
       <div class="input-field">
-        <label for="amount">Amount</label>
+        <label for="amount">Quantia</label>
         <div
           class="flex border rounded px-3 py-1"
           :class="error.amount ? '-error' : ''"
@@ -92,7 +92,7 @@
 
       <div class="flex w-full mb-3">
         <div class="input-field -half-width">
-          <label for="hours">Time</label>
+          <label for="hours">Horas</label>
           <input
             v-model="input.hour"
             type="time"
@@ -102,7 +102,7 @@
         </div>
 
         <div class="input-field -half-width">
-          <label for="date">Date</label>
+          <label for="date">Data</label>
           <input
             v-model="input.date"
             type="date"
@@ -113,14 +113,14 @@
       </div>
 
       <div class="input-field">
-        <label for="location">Place</label>
+        <label for="location">Local</label>
         <input
           v-model="input.location"
           type="text"
           id="location"
           name="transaction_location"
           :disabled="input.currentLocation ? true : false"
-          placeholder="Enter the transaction place"
+          placeholder="Ex: Estoril"
         />
       </div>
 
@@ -133,7 +133,7 @@
             v-model="input.currentLocation"
             class="cursor-pointer input-checkbox"
           />
-          Add current location
+          Adicionar localizaçao atual
         </label>
       </div>
 
@@ -145,7 +145,7 @@
           "
           @click.prevent="addTransaction"
         >
-          <span v-if="!loadingState">Add</span>
+          <span v-if="!loadingState">Adicionar</span>
           <img v-else class="w-6" src="../assets/loading.gif" />
         </button>
       </div>
@@ -204,11 +204,11 @@ export default {
       var errorsNum = 0;
 
       if (!this.input.description) {
-        this.error.description = "Please enter a description";
+        this.error.description = "Por favor adicione uma descrição";
         errorsNum++;
       }
       if (!this.input.amount || !/^[0-9]*$/.test(this.input.amount)) {
-        this.error.amount = "Please enter an valid amount";
+        this.error.amount = "Por favor adicione uma quantia válida";
         errorsNum++;
       }
 
@@ -250,8 +250,8 @@ export default {
 
 .input-submit:hover {
   transform: scale(0.98);
-  box-shadow: 0 0 5px -1px rgba(128, 90, 213, 0.5),
-    0 0 13px -1px rgba(128, 90, 213, 0.5),
-    0 0 29px -1px rgba(128, 90, 213, 0.5);
+  box-shadow: 0 0 12px -1px rgba(128, 90, 213, 0.5),
+    0 0 25px -1px rgba(128, 90, 213, 0.5),
+    0 0 50px -1px rgba(128, 90, 213, 0.5);
 }
 </style>
