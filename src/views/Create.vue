@@ -13,6 +13,7 @@
         sm:1/2
         lg:w-2/6
         rounded
+        shadow-md
       "
     >
       <div class="toggle-switch">
@@ -140,9 +141,7 @@
       <div class="mt-4 ml-auto">
         <button
           :disabled="loadingState ? true : false"
-          class="
-            input-submit
-          "
+          class="input-submit"
           @click.prevent="addTransaction"
         >
           <span v-if="!loadingState">Adicionar</span>
@@ -243,15 +242,13 @@ export default {
   border-radius: 0.25rem;
   background-color: #805ad5;
   box-shadow: 0 0 8px -1px rgba(128, 90, 213, 0.5),
-    0 0 16px -1px rgba(128, 90, 213, 0.5),
-    0 0 32px -1px rgba(128, 90, 213, 0.5);
-    transition: all .3s ease;
+    0 0 16px -1px rgba(128, 90, 213, 0.5), 0 0 32px -1px rgba(128, 90, 213, 0.5);
+  transition: all 0.3s ease;
 }
 
 .input-submit:hover {
   transform: scale(0.98);
   box-shadow: 0 0 12px -1px rgba(128, 90, 213, 0.5),
-    0 0 25px -1px rgba(128, 90, 213, 0.5),
-    0 0 50px -1px rgba(128, 90, 213, 0.5);
+    0 0 25px -1px rgba(128, 90, 213, 0.5), 0 0 50px -1px rgba(128, 90, 213, 0.5);
 }
 </style>
