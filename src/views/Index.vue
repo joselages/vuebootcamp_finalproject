@@ -88,23 +88,24 @@
               v-if="transaction.location"
               class="text-purple-600 underline"
               target="_blank"
+              rel="noreferrer"
               v-bind:href="'http://maps.google.com/?q=' + transaction.location"
               >Ver no mapa</a
             >
           </div>
           <div
-            class="mr-5 text-xl font-semibold"
+            class="mr-5 text-xl font-semibold grid place-items-center"
             :style="{
               color: transaction.type === 'credit' ? 'rgb(0 206 47)' : '',
             }"
             :data-idx="idx"
           >
-            <span>{{ transaction.type === "credit" ? "+" : "-" }}</span>
-            {{ formatMoney(transaction.amount) }}
+            <p>{{ transaction.type === "credit" ? "+" : "-" }} {{ formatMoney(transaction.amount) }}</p>
+            
           </div>
 
           <button
-            class="font-bold text-2xl leading-none opacity-50"
+            class="font-bold text-2xl leading-none opacity-25"
             @click.prevent="removeTransaction(idx)"
           >
             <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
