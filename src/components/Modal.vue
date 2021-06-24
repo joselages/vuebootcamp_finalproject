@@ -1,14 +1,23 @@
 <template>
-  <div v-if="modalState">
+  <div class="absolute w-full h-full pt-20" v-if="modalState">
     <div class="modal-wrapper"></div>
 
-    <div class="modal-window">
-      <div class="modal-title">Are you sure?</div>
-      <div class="modal-body">This action can't be undone.</div>
+    <div class="modal-window w-11/12 bottom-7 sm:w-9/12 md:max-w-lg">
+      <div class="modal-title">Tem a certeza?</div>
+      <div class="modal-body">
+        A transação será eliminado e não poderá voltar atrás...
+      </div>
 
       <div class="button-wrapper">
-        <button @click.prevent="closeModal" class="cancel-button">Cancel</button>
-        <button @click.prevent="$store.dispatch('resolveModal')" class="ok-button">OK</button>
+        <button @click.prevent="closeModal" class="cancel-button">
+          Cancelar
+        </button>
+        <button
+          @click.prevent="$store.dispatch('resolveModal')"
+          class="ok-button"
+        >
+          Eliminar
+        </button>
       </div>
     </div>
   </div>
@@ -41,7 +50,7 @@ export default {
 }
 .modal-window {
   background: #eee;
-  width: 275px;
+
   z-index: 9999;
   position: absolute;
   left: 0;
@@ -50,7 +59,15 @@ export default {
   margin-right: auto;
   border-radius: 15px;
   padding: 30px;
+  border-radius: 0.25rem;
 }
+
+@media (min-width: 640px) {
+  .modal-window {
+    bottom: initial;
+  }
+}
+
 .modal-title {
   font-weight: bold;
   font-size: 18px;
@@ -69,7 +86,7 @@ export default {
 .ok-button {
   color: #ebf8ff;
   padding: 10px 20px;
-  background: #2c5282;
-  border-radius: 10px;
+  background-color: rgba(239, 68, 68);
+  border-radius: 0.25rem;
 }
 </style>

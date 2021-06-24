@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-col items-center" @keyup.enter="addTransaction">
+  <div class="w-full flex flex-col items-center overflow-y-auto" @keyup.enter="addTransaction">
     <h1 class="my-5">Adicionar transação</h1>
     <form
       class="
@@ -91,7 +91,7 @@
         </transition>
       </div>
 
-      <div class="flex w-full mb-3">
+      <div class="flex w-full mb-3 flex-col sm:flex-row">
         <div class="input-field -half-width">
           <label for="hours">Horas</label>
           <input

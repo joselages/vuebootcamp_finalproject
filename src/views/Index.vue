@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center">
+  <div class="flex flex-col items-center h-full overflow-y-auto">
     <h1 class="my-5">Transações</h1>
 
     <template v-if="getTransactions.length">
@@ -20,7 +20,7 @@
         <div
           v-for="(transaction, idx) in getTransactions"
           :key="transaction.id"
-          class="transaction relative"
+          class="transaction relative p-2 sm:p-auto"
         >
           <span :title="transaction.type === 'credit' ? 'Ganhei' : 'Gastei'">{{
             transaction.type === "credit" ? "🤑" : "💸"
@@ -79,14 +79,20 @@
             >
               {{ transaction.type === "credit" ? "+" : "-" }}
             </div> -->
-          <div class="ml-4 w-40 flex flex-col">
+          <div class="ml-4 w-40 flex flex-col truncated_txt">
             <h3 :title="transaction.description" class="truncated_txt">
               {{ transaction.description }}
             </h3>
-            <small>{{ transaction.date + " / " + transaction.hour }}</small>
+            <small>
+              <span v-if="transaction.date">{{ transaction.date }}</span
+              ><wbr />
+              <span v-if="transaction.hour">{{
+                " / " + transaction.hour
+              }}</span>
+            </small>
             <a
               v-if="transaction.location"
-              class="text-purple-600 underline"
+              class="text-purple-600 underline text-sm"
               target="_blank"
               rel="noreferrer"
               v-bind:href="'http://maps.google.com/?q=' + transaction.location"
@@ -100,8 +106,10 @@
             }"
             :data-idx="idx"
           >
-            <p>{{ transaction.type === "credit" ? "+" : "-" }} {{ formatMoney(transaction.amount) }}</p>
-            
+            <p>
+              {{ transaction.type === "credit" ? "+" : "-" }}
+              {{ formatMoney(transaction.amount) }}
+            </p>
           </div>
 
           <button
@@ -118,7 +126,12 @@
         </div>
       </div>
     </template>
-    <template v-else>Não tem transações</template>
+    <template v-else>
+      <div class="empty_state">
+        <span class="empty_emoji">🏜️</span>
+        Não tem transações...
+      </div>
+    </template>
   </div>
 </template>
 
@@ -161,17 +174,33 @@ export default {
 </script>
 
 <style>
+html,
+body {
+  height: 100%;
+}
+
+#app {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 4rem 3rem 1fr;
+}
+
 .truncated_txt {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+@media (max-width: 400px) {
+  .truncated_txt {
+    width: 100px;
+  }
+}
+
 .transaction {
   display: grid;
   grid-template-columns: 25px auto auto 25px;
   width: 100%;
-  padding: 0.75rem;
 }
 
 .transaction:not(:last-of-type) {
@@ -187,5 +216,21 @@ export default {
 .popin-enter-active,
 .popin-leave-active {
   transition: all 0.65s cubic-bezier(0.34, 2, 0.64, 1);
+}
+
+.empty_state {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5vh;
+  pointer-events: none;
+  user-select: none;
+}
+
+.empty_emoji {
+  opacity: 0.25;
+  font-size: 10rem;
+  margin-bottom: 0.5rem;
 }
 </style>

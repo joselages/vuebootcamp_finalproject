@@ -57,6 +57,20 @@ h1 {
   margin-right: 1rem;
 }
 
+@media (max-width: 640px) {
+  .input-field.-half-width {
+    width: 100%;
+  }
+
+  .input-field.-half-width input {
+    width: 100%;
+  }
+
+  .input-field.-half-width:first-of-type {
+    margin-right: 0;
+  }
+}
+
 .input-field label {
   font-size: 0.75em;
   margin-bottom: 0.1rem;
@@ -103,6 +117,14 @@ h1 {
   letter-spacing: 0.2em;
 }
 
+@media (max-width: 360px) {
+  .toggle-switch label {
+    font-size: 14px;
+    padding: 1.2em;
+    letter-spacing: 0.1em;
+  }
+}
+
 .toggle-switch label:first-of-type {
   border-right-color: transparent;
 }
@@ -122,15 +144,15 @@ h1 {
   box-shadow: none;
 }
 
-.toggle-switch label:hover{
-  opacity:.75;
+.toggle-switch label:hover {
+  opacity: 0.75;
 }
 
 .input-checkbox {
-  width:20px;
+  width: 20px;
   height: 20px;
   filter: hue-rotate(410deg);
-  margin-right: .25rem;
+  margin-right: 0.25rem;
 }
 
 .input-checkbox {
@@ -159,5 +181,7 @@ h1 {
   background: #cbd5e0;
   text-align: center;
   padding: 5px;
+  display: grid;
+  place-items: center;
 }
 </style>
