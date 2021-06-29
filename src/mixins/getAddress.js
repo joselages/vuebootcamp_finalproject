@@ -24,7 +24,7 @@ export default {
       //   });
 
       fetch(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?access_token=${process.env.VUE_APP_API_KEY}`
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?access_token=pk.eyJ1IjoiamxhZ2VzIiwiYSI6ImNrcWlmNWZmZjBncmMyb3NiM3F6OTg1a2kifQ.siZawaVTuhLZ9BQjkcJ-eg`
       )
         .then((response) => response.json())
         .then(function(data) {

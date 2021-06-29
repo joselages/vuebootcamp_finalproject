@@ -28,12 +28,6 @@ export default {
 /*styles provided from scrimba*/
 
 
-h1 {
-  font-weight: 800;
-  text-align: center;
-  margin: 1.5em 0;
-  font-size: 1.6em;
-}
 
 .input-field {
   display: flex;
