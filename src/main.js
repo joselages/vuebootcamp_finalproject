@@ -1,5 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
+import './index.css'
 import router from "./router";
 import store from "./store";
 
@@ -9,6 +10,8 @@ import formatDate from "./mixins/formatDate";
 import getAddress from "./mixins/getAddress";
 import currentTime from "./mixins/currentTime";
 import sendToLS from "./mixins/sendToLS";
+
+
 
 Vue.config.productionTip = false;
 

@@ -26,10 +26,7 @@ export default {
 
 <style>
 /*styles provided from scrimba*/
-body {
-  font-family: "Poppins", sans-serif;
-  color: #444;
-}
+
 
 h1 {
   font-weight: 800;
