@@ -1,6 +1,5 @@
 <template>
-  <div class="absolute w-full h-full pt-20" v-if="modalState">
-    <div class="modal-wrapper"></div>
+  <div class="absolute w-full h-full pt-20 z-10" style="background-color:rgba(0,0,0,0.65)" v-if="modalState">
 
     <div class="modal-window w-11/12 bottom-7 sm:w-9/12 md:max-w-lg">
       <div class="modal-title">Tem a certeza?</div>
@@ -64,7 +63,7 @@ export default {
 
 @media (min-width: 640px) {
   .modal-window {
-    bottom: initial;
+    bottom: initial !important;
   }
 }
 
