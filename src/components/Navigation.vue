@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="w-full flex items-baseline justify-between py-4 px-8 bg-gray-200 border-b-4 border-purple-600"
+    class="w-full flex items-baseline justify-between py-4 px-3 sm:px-4 bg-gray-200 border-b-4 border-purple-600"
   >
     <router-link to="/">Transações</router-link>
 
